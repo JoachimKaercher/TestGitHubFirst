@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>Login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<style type="text/css">
+.headingsSmall { font-family: arial, helvetica, sans-serif; font-size: 16pt; }
+input { font-family: arial, helvetica, sans-serif; font-size:16pt; }
+caption { font-family: arial, helvetica, sans-serif; font-size:18pt; padding-top: 50pt; padding-bottom: 24pt; }
+</style>
+
+<script language="JavaScript" type="text/javascript">
+
+	function checkUserName(userNameStr)
+	{
+		if (userNameStr != "" && userNameStr != usrNamePart)
+			return true;
+		else {
+			alert('Bitte vollständigen Benutzernamen eingeben!');
+			return false;
+		}
+	}
+
+	function keyHandler(ev, obj)
+	{
+		var pressedKey = (navigator.appName == "Netscape") ? ev.which : ev.keyCode;
+		if (pressedKey != 13)
+			return true;
+		else if (checkUserName(obj.value)) {
+			document.forms[0].userName.value = obj.value;
+			document.forms[0].submit();
+		}
+		return false;
+	}
+</script>
+</head>
+
+<body bgcolor="#FAFFD7">
+<form name="loginForm" action="./php/initSession.php" method="post">
+
+<table align="center" border="3" frame="box" rules="none" bordercolor="black" bgcolor="D9F9FF" cellspacing="0">
+  <caption>
+		<b><u>Benutzeranmeldung</u></b>
+	</caption>
+  <tr>
+    <td class="headingsSmall">Bitte geben Sie ihren Benutzernamen ein:&nbsp;</td>
+		<td><input type="text" name="usrName" size="20" onBlur="document.forms[0].userName.value=this.value;" onKeyPress="return keyHandler(event, this);"></td>
+  </tr>
+</table>
+<table align="center" border="0" cellspacing="10">
+	<tr>
+		<td type="text/css" style="padding-top: 20pt;" align="center" width="50%"><input type="button" style="width: 140pt;" name="LoginButton" value="Anmelden" onClick="if (checkUserName(document.forms[0].usrName.value)) document.forms[0].submit();"></td>
+		<td type="text/css" style="padding-top: 20pt;" align="center" width="50%"><input type="reset" style="width: 140pt;" name="ResetButton" value="Eingabe l&ouml;schen" onClick="document.forms[0].usrName.focus();"></td>
+	</tr>
+</table>
+
+<input type="hidden" name="userName" value="">
+<input type="hidden" name="bankName" value="Sparkasse Celle">
+<input type="hidden" name="bankBlz" value="25750001">
+<input type="hidden" name="options" value="1">
+<input type="hidden" name="login" value="1">
+<input type="hidden" name="procId" value="1">
+
+<script language="JavaScript" type="text/javascript">
+	var usrNamePart = "";
+
+	document.forms[0].usrName.focus();
+	document.forms[0].usrName.value = usrNamePart;
+</script>
+</form>
+</body>
+</html>
