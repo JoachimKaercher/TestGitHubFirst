@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>611SAS Start Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+</head>
+
+<body>
+<form name="init" action="./php/initSession.php" method="post">
+	<input type="hidden" name="userName" value="Bediener">
+	<input type="hidden" name="bankName" value="Sparkasse Celle">
+	<input type="hidden" name="bankBlz" value="25750001">
+	<input type="hidden" name="options" value="1">
+</form>
+<script language="JavaScript" type="text/javascript">
+	document.init.submit();
+</script>
+</body>
+</html>
